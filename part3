@@ -1,0 +1,20 @@
+getwd()#try to find out first where your working directory 
+
+corr <- function(threshold){
+	correlation <- c()
+	filenames <- paste(sprintf("%03d", 1:332), ".csv", sep="")
+
+	for(i in 1:332){
+		file <- read.csv(filenames[i])
+		compdata <- na.omit(file)
+		rowcount <- nrow(compdata)
+
+	if(rowcount > threshold){
+		correlation <- c(correlation,cor(compdata[,2],compdata[,3]))}
+		
+}	
+	return(correlation)
+}
+
+
+
