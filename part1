@@ -1,0 +1,13 @@
+filenames <- paste(sprintf("%03d", 1:332), ".csv", sep="")
+file <- read.csv(filenames[1])##randomly take a look at one 
+
+pollutantmean <- function(pollutant,id=1:332) {
+	filenames <- paste(sprintf("%03d",id),".csv",sep="")
+ 	data <- data.frame()
+	#Looping thru the directory's files specified in the 'id' argument 
+	for (file in filenames){
+  		 data <- rbind(data,read.csv(file))#read out the data file 
+}
+ 		 pmean=mean(data[[pollutant]],na.rm=TRUE)
+		 return (pmean)
+}	
