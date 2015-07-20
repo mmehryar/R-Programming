@@ -1,0 +1,18 @@
+complete <- function(id) {
+          	 # initializing the dataframe i want from this function
+    		   output <- as.data.frame(matrix(nrow = 0, ncol = 2,dimnames = list(NULL, c("ID", "nobs"))))
+    		   filenames <- paste(sprintf("%03d", id), ".csv", sep="")
+
+     	  #Looping thru the directory's files specified in the 'id' argument 
+  for (file in filenames)
+	{
+  	   out <- as.data.frame(matrix(nrow = 0, ncol = 2,dimnames = list(NULL, c("ID", "nobs"))))
+ 	   compdata <- read.csv(file)#read out  data file 
+ 	   lastrow <- tail(compdata , 1)#return the last row 
+ 	   nobs<- nrow(na.omit(compdata))#number of complete observed data
+ 	   id <- lastrow$ID
+ 	   out <- cbind(id,nobs)
+ 	   output <- rbind(output , out)
+        }
+return(output)
+}
